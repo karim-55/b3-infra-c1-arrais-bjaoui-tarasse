@@ -1,4 +1,4 @@
-from mealmaker.core import is_vege, fits_time, within_budget_avg, select_menu, consolidate_shopping_list
+from mealmaker.core import is_vege, fits_time, within_budget_avg, select_menu, consolidate_shopping_list, is_fish, is_meat
 
 def sample_recipes():
     return [
@@ -14,6 +14,19 @@ def test_is_vege():
     r = {"tags": ["VeGe"]}
     assert is_vege(r) is True
     assert is_vege({"tags": ["viande"]}) is False
+    
+def test_is_min_fish():
+    recs = sample_recipes()
+    menu = select_menu(recs, days=4, min_fish=2, seed=10)
+    assert len(menu) == 4
+    assert sum(1 for r in menu if is_fish(r)) >= 2
+
+def test_is_max_meat():
+    recs = sample_recipes()
+    menu = select_menu(recs, days=4, max_meat=1, seed=15)
+    assert len(menu) == 4
+    assert sum(1 for r in menu if is_meat(r)) <= 1
+
 
 def test_fits_time():
     assert fits_time({"time_min": 20}, 30) is True
