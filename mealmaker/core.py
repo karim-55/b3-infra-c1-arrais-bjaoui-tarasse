@@ -5,6 +5,14 @@ import random
 def is_vege(recipe: Dict[str, Any]) -> bool:
     return "tags" in recipe and any(t.lower() == "vege" for t in recipe["tags"])
 
+def is_fish(recipe: Dict[str, Any]) -> bool:
+    """Vérifie si la recette contient du poisson"""
+    return "tags" in recipe and any(t.lower() in ["poisson", "fish"] for t in recipe["tags"])
+
+def is_meat(recipe: Dict[str, Any]) -> bool:
+    """Vérifie si la recette contient de la viande"""
+    return "tags" in recipe and any(t.lower() in ["viande", "meat"] for t in recipe["tags"])
+
 def fits_time(recipe: Dict[str, Any], max_time: int | None) -> bool:
     if max_time is None:
         return True
@@ -21,6 +29,8 @@ def select_menu(
     days: int = 7,
     min_vege: int = 2,
     max_time: int | None = None,
+    min_fish: int | None = None,
+    max_meat: int | None = None,
     avg_budget: float | None = None,
     tolerance: float = 0.2,
     seed: int | None = 42,
@@ -45,6 +55,17 @@ def select_menu(
         vege_count = sum(1 for r in cand if is_vege(r))
         if vege_count < min_vege:
             continue
+        
+        #Contrainte min-fish
+        if min_fish is not None:
+            fish_count = sum(1 for r in cand if is_fish(r))
+            if fish_count < min_fish:
+                continue
+        if max_meat is not None:
+            meat_count = sum(1 for r in cand if is_meat(r))
+            if meat_count > max_meat:
+                continue
+            
         if avg_budget is not None and not within_budget_avg(cand, avg_budget, tolerance):
             continue
         best = cand
@@ -74,12 +95,14 @@ def plan_menu(
     days: int = 7,
     min_vege: int = 2,
     max_time: int | None = None,
+    min_fish: int | None = None,
+    max_meat: int | None = None,
     avg_budget: float | None = None,
     tolerance: float = 0.2,
     seed: int | None = 42,
 ) -> Dict[str, Any]:
     menu = select_menu(
-        recipes, days=days, min_vege=min_vege, max_time=max_time,
+        recipes, days=days, min_vege=min_vege, max_time=max_time, min_fish=min_fish, max_meat=max_meat,
         avg_budget=avg_budget, tolerance=tolerance, seed=seed
     )
     shopping = consolidate_shopping_list(menu)
