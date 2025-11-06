@@ -32,5 +32,57 @@
       {"name": "poulet", "qty": 1, "unit": "kg"},
       {"name": "pommes de terre", "qty": 500, "unit": "g"}
     ]
+  },
+  {
+    "id": "r4",
+    "name": "Salade niçoise",
+    "tags": ["poisson", "rapide", "healthy"],
+    "time_min": 20,
+    "budget_eur": 3.5,
+    "ingredients": [
+      {"name": "thon", "qty": 150, "unit": "g"},
+      {"name": "œufs", "qty": 2, "unit": "piece"},
+      {"name": "haricots verts", "qty": 100, "unit": "g"},
+      {"name": "tomates", "qty": 2, "unit": "piece"},
+      {"name": "olive noire", "qty": 20, "unit": "g"}
+    ]
+  },
+  {
+    "id": "r5",
+    "name": "Chili con carne",
+    "tags": ["viande", "épice"],
+    "time_min": 45,
+    "budget_eur": 3.8,
+    "ingredients": [
+      {"name": "boeuf haché", "qty": 300, "unit": "g"},
+      {"name": "haricots rouges", "qty": 200, "unit": "g"},
+      {"name": "tomates", "qty": 200, "unit": "g"},
+      {"name": "oignon", "qty": 1, "unit": "piece"}
+    ]
+  },
+  {
+    "id": "r6",
+    "name": "Soupe de lentilles",
+    "tags": ["vege", "healthy"],
+    "time_min": 35,
+    "budget_eur": 2.2,
+    "ingredients": [
+      {"name": "lentilles", "qty": 200, "unit": "g"},
+      {"name": "carottes", "qty": 150, "unit": "g"},
+      {"name": "céleri", "qty": 50, "unit": "g"},
+      {"name": "oignon", "qty": 1, "unit": "piece"}
+    ]
+  },
+  {
+    "id": "r7",
+    "name": "Poisson grillé au citron",
+    "tags": ["poisson", "rapide", "healthy"],
+    "time_min": 25,
+    "budget_eur": 4.5,
+    "ingredients": [
+      {"name": "filet de poisson", "qty": 200, "unit": "g"},
+      {"name": "citron", "qty": 1, "unit": "piece"},
+      {"name": "herbes de Provence", "qty": 1, "unit": "cs"}
+    ]
   }
 ]
